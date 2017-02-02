@@ -3,17 +3,17 @@ import java.util.*;
 /**
  * Preisregel, hier ein Beispiel im Constructor erstellt,
  * kann aber auch aus File oder DB kommen
- * 
+ * <p>
  * Berücksichtigt nur eine Preisregel pro Prokukt. (Wenn mehrere Preisregeln gelten sollen, wird es komplexer)
  */
 public class PricingRules
 {
-	private Set<Item> items;
+	private Set<Item>       items;
 	private Map<Item, Rule> rules;
 
 	public PricingRules()
 	{
-		rules = new HashMap();
+		rules = new HashMap<>();
 
 		items = new HashSet<Item>();
 
@@ -26,9 +26,9 @@ public class PricingRules
 		items.add( itemB );
 		items.add( itemC );
 		items.add( itemD );
-		
+
 		Rule ruleA = new Rule( 3, 100 );
-		Rule ruleB = new Rule( 2, 80);
+		Rule ruleB = new Rule( 2, 80 );
 
 		rules.put( itemA, ruleA );
 		rules.put( itemB, ruleB );
@@ -36,7 +36,7 @@ public class PricingRules
 
 	/**
 	 * Gibt ein Produkt anhand der SKU zurück
-	 * @param sku
+	 *
 	 * @return
 	 */
 	public Item getItemBySKU( String sku )
@@ -53,12 +53,11 @@ public class PricingRules
 
 	/**
 	 * Gibt eine Preisregel für ein Produkt zurück
-	 * @param item
+	 *
 	 * @return
 	 */
-	public Rule getRuleForItem(Item item)
+	public Rule getRuleForItem( Item item )
 	{
 		return rules.get( item );
 	}
-
 }

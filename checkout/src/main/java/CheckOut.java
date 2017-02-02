@@ -7,18 +7,17 @@ public class CheckOut
 {
 	// Preisregeln
 	private PricingRules pricingRules;
-	
+
 	// Items im Warenkorb
-	private List<Item>   items;
+	private List<Item> items;
 
 	/**
 	 * Warenkorb wird mit Preisregeln initialisiert
-	 * @param pricingRules
 	 */
 	public CheckOut( PricingRules pricingRules )
 	{
 		this.pricingRules = pricingRules;
-		items = new ArrayList();
+		items = new ArrayList<>();
 	}
 
 	// Hinzufügen von Items in den Warenkorb
@@ -32,7 +31,7 @@ public class CheckOut
 	public int total()
 	{
 
-		Map<String, Integer> priceForItems = new HashMap<String, Integer>();
+		Map<String, Integer> priceForItems = new HashMap<>();
 
 		// Schleife über alle Items im Warenkorb
 		for ( Item item : items )
@@ -61,16 +60,16 @@ public class CheckOut
 	}
 
 	/**
-	 * Berechnet die Anzahl der gleichen Items im Warenkorb 
-	 * @param itemToCount
-	 * @return
+	 * Berechnet die Anzahl der gleichen Items im Warenkorb
+	 *
+	 * @return amount of items
 	 */
 	private int getAmountOfItem( Item itemToCount )
 	{
 		int amount = 0;
 		for ( Item item : items )
 		{
-			if ( item.getSku().equals( itemToCount.getSku() ))
+			if ( item.getSku().equals( itemToCount.getSku() ) )
 			{
 				amount++;
 			}
@@ -80,9 +79,8 @@ public class CheckOut
 
 	/**
 	 * Berechnet den Preis eines Items, abhängig von der Anzahl
-	 * @param item
-	 * @param amount
-	 * @return
+	 *
+	 * @return price for given item
 	 */
 	private int getPriceForItem( Item item, int amount )
 	{
@@ -95,9 +93,9 @@ public class CheckOut
 			// Rest bestimmen, der nicht von der Preisregel betroffen ist
 			int mod = amount % rule.getMinAmountForDiscount();
 			int price = mod * item.getPrice();
-			
+
 			// Anzahl der Preisnachlässe bestimmen und mit dem Nachlass multiplizieren
-			price += ((amount - mod) / rule.getMinAmountForDiscount()) *rule.getPriceForDiscount();
+			price += ((amount - mod) / rule.getMinAmountForDiscount()) * rule.getPriceForDiscount();
 			return price;
 		}
 		else
